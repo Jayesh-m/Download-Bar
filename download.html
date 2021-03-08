@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title> Download counter | by Jayesh </title>
+    </head>
+    <link rel="stylesheet" href="/download.css">
+    <script src="/download.js"></script>
+    <body>
+        <div class="box">
+            <h2>0%</h2>
+            <div class="bar">
+                <div id="bar"></div>
+            </div>
+            <button>Download <i class="fa fa-download"></i></button>
+        </div>
+        
+        <script>
+            var box = document.querySelector("button");
+            box.addEventListener('click', () =>{
+            var count = 0;
+            var f = "%";
+            var txt = document.querySelector("h2");
+            var bar = document.querySelector("#bar");
+                var tim = setInterval(() =>{
+                    count++;
+                    txt.innerHTML = count + f;
+                    bar.style.width = count + "%";
+                    txt.style.fontSize = "24px";
+                    box.innerHTML = "Downloading..."
+                    if(count == 100){
+                    clearInterval(tim);
+                    txt.innerHTML = "Downloaded successful!";
+                    txt.style.fontSize = "20px";
+                    box.innerHTML = "<i class='fa fa-check'></i>";
+                    box.style.fontSize = "22px";
+                    setTimeout(() =>{
+                    box.innerHTML = "Download" + " " + "<i class='fa fa-download'></i>";
+                    txt.innerHTML = "0%";
+                    bar.style.width = "0";
+                    box.style.fontSize = "15px";
+                },1500)
+                    }
+                },100)
+                
+            })
+        </script>
+    </body>
+</html>
